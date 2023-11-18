@@ -18,11 +18,14 @@ webpush.setVapidDetails(
 
 app.get('/send-notification', async (req, res) => {
   try {
+
+    const payload = JSON.stringify({
+      title: 'Notification Title',
+      body: 'Notification Body',
+    });
+
     console.log(subscriptionData.endpoint)
-    await webpush.sendNotification(subscriptionData, JSON.stringify({
-      title: "Hello World",
-      body: "Notification sent from backend"
-    }));
+    await webpush.sendNotification(subscriptionData, payload);
     res.sendStatus(200);
   } catch(err) {
     console.error(err);
@@ -38,4 +41,4 @@ app.post("/save-subscription", async (req, res) => {
 
 app.use(express.static("./public"));
 
-app.listen(process.env.PORT || 8000);
+app.listen(process.env.PORT || 8111);
