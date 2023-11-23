@@ -30,6 +30,8 @@ async function run() {
           userVisibleOnly: true,
         });
 
+        console.log(subscription);
+
         await fetch("/save-subscription", {
           method: "post",
           headers: {
